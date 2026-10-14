@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#173f35">
+  <meta name="description" content="BookArena — aplikasi demo booking lapangan futsal dan bulu tangkis. Pilih lapangan, cek jadwal, dan reservasi waktu mainmu.">
+  <title>BookArena — Cari lapangan. Mulai permainan.</title>
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <link rel="stylesheet" href="styles.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#lapangan">Lewati ke daftar lapangan</a>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="#" aria-label="BookArena beranda"><span class="brand-icon" data-icon="court"></span>BookArena<span class="brand-dot">.</span></a>
+      <nav class="main-nav" aria-label="Navigasi utama">
+        <a href="#lapangan" class="nav-active" aria-current="location">Cari lapangan</a>
+        <a href="#cara-booking">Cara booking</a>
+        <a href="#promo" id="nav-promo">Promo <span class="tiny-dot"></span></a>
+      </nav>
+      <button class="button button-outline my-bookings" id="orders-button"><span data-icon="ticket"></span><span>Booking saya</span><span class="order-count" id="order-count" hidden>0</span></button>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero container" aria-labelledby="hero-title">
+      <div class="hero-copy entrance">
+        <span class="eyebrow"><span class="tiny-dot"></span> WAKTUNYA MAIN LAGI</span>
+        <h1 id="hero-title">Lapangan siap.<br>Kamu <span class="serif-word">kapan?</span></h1>
+        <p>Dari smash pertama sampai gol penentu.<br>Temukan lapangan, ajak teman, dan mulai main.</p>
+        <a class="button button-primary hero-cta" href="#lapangan">Temukan lapangan <span data-icon="arrow-up-right"></span></a>
+        <div class="hero-proof"><span class="proof-icon" data-icon="check"></span><span>Jadwal jelas</span><span class="proof-separator">·</span><span>Harga transparan</span><span class="proof-separator">·</span><span>Booking praktis</span></div>
+      </div>
+      <div class="hero-visual entrance hero-banner" id="hero-banner" role="region" aria-label="Pilihan lapangan dan penawaran BookArena">
+        <div class="hero-banner-window"><div class="hero-track" id="hero-track">
+          <article class="hero-slide"><img src="assets/futsal.png" alt="Lapangan futsal indoor dengan rumput hijau dan cahaya sore" width="1536" height="1024" fetchpriority="high"><div class="hero-slide-copy"><span class="hero-tag">FUTSAL · WAKTUNYA KICKOFF</span><h2>Satu lapangan.<br>Sejuta cerita.</h2><p>Ajak timmu. Jadikan hari ini hari main.</p><a href="#lapangan" class="hero-banner-link">Cari lapangan futsal <span data-icon="arrow-up-right"></span></a></div><span class="hero-slide-number" aria-hidden="true">01 / 03</span></article>
+          <article class="hero-slide" aria-hidden="true" inert><img src="assets/badminton.png" alt="Lapangan bulu tangkis indoor dengan lantai biru" width="1536" height="1024"><div class="hero-slide-copy"><span class="hero-tag">BULU TANGKIS · SIAP SMASH?</span><h2>Rally panjang.<br>Serunya berulang.</h2><p>Temukan arena untuk pertandingan berikutnya.</p><a href="#lapangan" class="hero-banner-link">Cari lapangan bulu tangkis <span data-icon="arrow-up-right"></span></a></div><span class="hero-slide-number" aria-hidden="true">02 / 03</span></article>
+          <article class="hero-slide hero-offer-slide" aria-hidden="true" inert><img src="assets/extra-1.png" alt="Arena futsal indoor untuk bermain bersama tim" width="1536" height="1024"><div class="hero-slide-copy"><span class="hero-tag hero-tag-offer">MAIN LEBIH HEMAT</span><h2>Full semangat.<br>Lebih hemat.</h2><p>Diskon langsung di lapangan berlabel Promo!</p><a href="#promo" class="hero-banner-link">Jelajahi penawaran <span data-icon="arrow-up-right"></span></a></div><div class="hero-discount" aria-label="Diskon 10 persen"><span>DISKON</span><strong>10<small>%</small></strong></div><span class="hero-slide-number" aria-hidden="true">03 / 03</span></article>
+        </div></div>
+        <div class="hero-pagination" role="group" aria-label="Pilih banner"><button type="button" data-hero-index="0" aria-label="Banner futsal" aria-pressed="true"></button><button type="button" data-hero-index="1" aria-label="Banner bulu tangkis" aria-pressed="false"></button><button type="button" data-hero-index="2" aria-label="Banner promo" aria-pressed="false"></button></div>
+      </div>
+    </section>
+
+    <section class="container search-section entrance" aria-label="Pencarian lapangan">
+      <form class="search-bar" id="search-form">
+        <div class="search-field"><span data-icon="pin"></span><div><label for="location-filter">Mau main di mana?</label><select id="location-filter"><option value="all">Semua area Jakarta</option value="Jakarta Selatan">Jakarta Selatan</option><option value="Jakarta Barat">Jakarta Barat</option><option value="Jakarta Timur">Jakarta Timur</option></select></div></div>
+        <div class="search-field"><span data-icon="ball"></span><div><label for="sport-filter">Olahraga favoritmu</label><select id="sport-filter">
+          <option value="all">Semua olahraga</option>
+          <option value="futsal">Futsal</option>
+          <option value="badminton">Bulu tangkis</option>
+        </select></div></div>
+        <div class="search-field"><span data-icon="calendar"></span><div><label for="search-date">Kapan mau main?</label><input type="date" id="search-date" required></div></div>
+        <button class="button button-primary search-button" type="submit"><span data-icon="search"></span> Cari lapangan</button>
+      </form>
+    </section>
+
+    <section class="container venues-section" id="lapangan" aria-labelledby="venues-title">
+      <div class="section-heading reveal"><div><span class="eyebrow">TEMUKAN TEMPAT MAINMU</span><h2 id="venues-title">Main seru, di tempat yang pas.</h2><p>Pilih lapangan yang cocok dengan ritme permainanmu.</p></div><span class="results-count" id="results-count" aria-live="polite">6 lapangan tersedia</span></div>
+      <div class="filter-toolbar reveal">
+        <div class="sport-tabs" role="group" aria-label="Filter olahraga"><button class="filter-chip active" data-sport="all" aria-pressed="true"><span data-icon="grid"></span> Semua lapangan</button><button class="filter-chip" data-sport="futsal" aria-pressed="false"><span data-icon="ball"></span> Futsal</button><button class="filter-chip" data-sport="badminton" aria-pressed="false"><span data-icon="racket"></span> Bulu tangkis</button></div>
+        <div class="sort-area"><button class="filter-chip promo-filter" id="promo-filter" aria-pressed="false"><span data-icon="tag"></span> Promo saja</button><label class="sr-only" for="sort-filter">Urutkan lapangan</label><select id="sort-filter"><option value="recommended">Rekomendasi</option><option value="price">Harga terendah</option><option value="rating">Rating tertinggi</option></select></div>
+      </div>
+      <div class="venue-grid" id="venue-grid"></div>
+      <div class="empty-state" id="empty-state" hidden><span data-icon="search"></span><h3>Belum ada lapangan yang cocok.</h3><p>Coba area atau olahraga lain untuk menemukan tempat mainmu.</p><button class="button button-outline" id="reset-filters">Reset pencarian</button></div>
+      <p class="demo-note">Nama venue, rating, dan ketersediaan adalah data simulasi untuk mini-project.</p>
+    </section>
+
+    <section class="container promo-section reveal" id="promo" aria-labelledby="promo-title">
+      <div class="promo-copy"><span class="eyebrow">MAIN LEBIH HEMAT</span><h2 id="promo-title">Semangatnya full.<br>Harganya lebih santai.</h2><p>Nikmati diskon 10% di lapangan berlabel Promo!<br>Potongan langsung dihitung saat kamu booking.</p><button class="button button-light" id="show-promo">Lihat lapangan promo <span data-icon="arrow-up-right"></span></button></div>
+      <div class="promo-art" aria-hidden="true">
+        <div class="promo-offer"><span>DISKON LANGSUNG</span><strong>10<small>%</small></strong><span>di lapangan promo</span></div>
+        <img src="assets/promo-sports.png" alt="" width="1536" height="1024" loading="lazy">
+      </div>
+    </section>
+
+    <section class="container how-section" id="cara-booking" aria-labelledby="how-title"><div class="section-heading reveal"><div><span class="eyebrow">NGGAK PAKAI RIBET</span><h2 id="how-title">Tiga langkah. Langsung main.</h2></div><p>Urus booking-nya sebentar.<br>Serunya boleh lama.</p></div><div class="steps"><article class="step reveal"><span class="step-number">01</span><span class="step-icon" data-icon="search"></span><h3>Temukan lapangan</h3><p>Pilih olahraga dan area yang paling pas buat kamu dan tim.</p></article><article class="step reveal"><span class="step-number">02</span><span class="step-icon" data-icon="calendar"></span><h3>Atur waktu main</h3><p>Cek slot kosong, pilih jam mulai, lalu tentukan durasi main.</p></article><article class="step reveal"><span class="step-number">03</span><span class="step-icon" data-icon="ticket"></span><h3>Booking, beres!</h3><p>Konfirmasi total sewa. Bukti booking tersimpan di browser kamu.</p></article></div></section>
+  </main>
+
+  <footer class="site-footer"><div class="container footer-inner"><div><a href="#" class="brand"><span class="brand-icon" data-icon="court"></span>BookArena<span class="brand-dot">.</span></a><p>Ruang buat main. Waktu buat kamu.</p></div><div class="footer-meta"><span id="copyright-year">2026</span></div></div></footer>
+
+  <dialog class="booking-dialog" id="booking-dialog" aria-labelledby="booking-title">
+    <div class="dialog-header"><div><span class="eyebrow">ATUR WAKTU MAINMU</span><h2 id="booking-title">Booking lapangan</h2></div><button class="icon-button" data-close="booking-dialog" aria-label="Tutup booking"><span data-icon="x"></span></button></div>
+    <div class="booking-layout"><div class="booking-details"><div id="booking-gallery"></div><div class="booking-venue-info"><span class="eyebrow" id="booking-sport">FUTSAL</span><h3 id="booking-venue-name"></h3><p id="booking-location"></p><div class="amenities" id="booking-amenities"></div></div><div class="schedule-heading"><h3>Jadwal ketersediaan</h3><span>WIB · per jam</span></div><label for="booking-date" class="field-label">Tanggal main</label><input type="date" id="booking-date" required><div class="table-scroll"><table class="schedule-table"><caption class="sr-only">Jam, status ketersediaan, dan harga sewa lapangan</caption><thead><tr><th scope="col">Jam</th><th scope="col">Status</th><th scope="col">Harga sewa</th></tr></thead><tbody id="schedule-body"></tbody></table></div><p class="schedule-hint"><span data-icon="info"></span> Klik jam kosong untuk memilih waktu mulai.</p></div>
+    <form id="booking-form" class="booking-form" novalidate><h3>Detail reservasi</h3><p class="form-intro">Sedikit detail sebelum mulai main.</p><div class="form-field"><label for="customer-name">Nama pemesan</label><input id="customer-name" name="nama" placeholder="Nama lengkap kamu" autocomplete="name" maxlength="80" required aria-describedby="name-error"><span class="field-error" id="name-error"></span></div><div class="form-field"><label for="start-time">Jam main <span>WIB</span></label><select id="start-time" name="jamMain" required aria-describedby="time-error"></select><span class="field-error" id="time-error"></span></div><div class="form-field"><label for="duration">Lama main (jam)</label><div class="duration-control"><button type="button" class="icon-button" id="decrease-duration" aria-label="Kurangi durasi satu jam"><span data-icon="minus"></span></button><input id="duration" name="lamaMain" type="number" min="1" max="14" step="1" value="1" inputmode="numeric" required aria-describedby="duration-hint duration-error"><button type="button" class="icon-button" id="increase-duration" aria-label="Tambah durasi satu jam"><span data-icon="plus"></span></button></div><span class="field-hint" id="duration-hint">Minimal 1 jam. Lapangan tutup pukul 22.00 WIB.</span><span class="field-error" id="duration-error"></span></div><div class="booking-summary" aria-live="polite"><div><span>Biaya sewa</span><strong id="subtotal">Rp0</strong></div><div class="discount-row" id="discount-row"><span>Promo 10%</span><strong id="discount">−Rp0</strong></div><div><span>Biaya layanan</span><strong>Gratis</strong></div><div class="summary-total"><span>Total sewa</span><strong id="booking-total">Rp0</strong></div><span class="field-hint" id="booking-period">Pilih waktu mainmu.</span></div><div class="form-error" id="booking-error" role="alert" tabindex="-1" hidden></div><button class="button button-primary book-submit" type="submit">Booking sekarang <span data-icon="arrow-right"></span></button></form></div>
+  </dialog>
+
+  <dialog class="orders-dialog" id="orders-dialog" aria-labelledby="orders-title"><div class="dialog-header"><div><span class="eyebrow">WAKTU MAINMU</span><h2 id="orders-title">Booking saya</h2></div><button class="icon-button" data-close="orders-dialog" aria-label="Tutup daftar booking"><span data-icon="x"></span></button></div><p class="orders-intro">Reservasi demo yang tersimpan di browser ini.</p><div id="orders-list"></div></dialog>
+  <dialog class="success-dialog" id="success-dialog" aria-labelledby="success-title"><button class="icon-button success-close" data-close="success-dialog" aria-label="Tutup bukti booking"><span data-icon="x"></span></button><div class="success-check" data-icon="check"></div><span class="eyebrow">LET’S PLAY!</span><h2 id="success-title">Waktu mainmu sudah aman.</h2><p>Bukti reservasi demo tersimpan di Booking saya.</p><div class="ticket-details" id="ticket-details"></div><button class="button button-primary" id="view-orders">Lihat booking saya <span data-icon="ticket"></span></button><button class="text-button" data-close="success-dialog">Cari lapangan lagi</button></dialog>
+  <div class="toast" id="toast" role="status" hidden><span data-icon="check"></span><span id="toast-message"></span></div>
+  <noscript><div class="noscript-note">Aktifkan JavaScript untuk melihat daftar lapangan dan membuat reservasi.</div></noscript>
+</body>
+</html>
